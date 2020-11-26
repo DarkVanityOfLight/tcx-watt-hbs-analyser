@@ -26,6 +26,12 @@ def handle_tracks(tracks):
         track_points += track.findall('{http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2}Trackpoint')
     return track_points
 
+def handle_points(points):
+    hbs, watts = [], []
+    for point in points:
+        hb, watt = handle_point(point)
+    return hbs, watt
+
 
 def parse_file(filename):
     root = root_from_tree(file_to_tree(filename))
@@ -33,6 +39,7 @@ def parse_file(filename):
     laps = activity.findall("{http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2}Lap")
     tracks = handle_laps(laps)
     track_points = handle_tracks(tracks)
+    hbs, watt = handle_points(track_points)
 
 # Main
 
