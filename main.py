@@ -30,6 +30,8 @@ def handle_points(points):
     hbs, watts = [], []
     for point in points:
         hb, watt = handle_point(point)
+        hbs.append(hb)
+        watts.append(watt)
     return hbs, watt
 
 def handle_point(point):
