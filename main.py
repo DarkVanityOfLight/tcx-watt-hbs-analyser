@@ -2,10 +2,25 @@
 
 # Imports
 import xml.etree.ElementTree as ET
+import tkinter
+matplotlib.use("TkAgg")
+import matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2TkAgg
 
 # Variable declarations
 
 # Classes
+class PlotPage(tk.Frame):
+    def __init__(self, parent, figure):
+        tk.Frame.__init__(self, parent)
+    
+        canvas = FigureCanvasTkAgg(figure, self)
+        canvas.show()
+        canvas.get_tk_widget().pack(side=tk.BOTTOM, fill=tk.BOTH, expand=True)
+
+        toolbar = NavigationToolbar2TkAgg(canvas, self)
+        toolbar.update()
+        canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+
 
 # Functions
 def file_to_tree(filename):
