@@ -32,6 +32,13 @@ def handle_points(points):
         hb, watt = handle_point(point)
     return hbs, watt
 
+def handle_point(point):
+    hb = point.find('{http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2}HeartRateBpm')
+    hb = hb.find('{http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2}Value').text
+    watt = point.find('{http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2}Extensions')
+    watt = watt.find('{http://www.garmin.com/xmlschemas/ActivityExtension/v2}TPX')
+    watt = watt.find('{http://www.garmin.com/xmlschemas/ActivityExtension/v2}Watts').text
+    return hb, watt
 
 def parse_file(filename):
     root = root_from_tree(file_to_tree(filename))
