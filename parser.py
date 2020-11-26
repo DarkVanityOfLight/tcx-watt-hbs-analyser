@@ -67,11 +67,15 @@ def parse_file(filename):
     ffit = values_fit(hbs, watts)
     return hbs, watts, ffit
 
-def create_plot(x, y, name):
-    f = Figure(figsize(len(x), len(y)), dpi=100)
-    a = f.add_subplot()
-    a.plot(x, y)
-    return f
+def values_fit(x, y):
+    xn = np.array(x)
+    yn = np.array(y)
+    coefs = poly.polyfit(x, y, 1)
+    ffit = poly.Polynomial(coefs)
+    return ffit
+
+def create_plot():
+    pass
 
 # Main
 
