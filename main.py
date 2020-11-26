@@ -2,16 +2,18 @@
 
 # Imports
 import xml.etree.ElementTree as ET
-import tkinter
+from tkinter import *
+from tkinter import ttk
 matplotlib.use("TkAgg")
 import matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2TkAgg
 
 # Variable declarations
+root = Tk()
 
 # Classes
-class PlotPage(tk.Frame):
+class PlotPage(Frame):
     def __init__(self, parent, figure):
-        tk.Frame.__init__(self, parent)
+        Frame.__init__(self, parent)
     
         canvas = FigureCanvasTkAgg(figure, self)
         canvas.show()
@@ -75,3 +77,6 @@ def create_plot(x, y, name):
 
 if __name__ == "__main__":
     parse_file("activity.xml")
+    root().title("Training Data") # TODO Get the training date
+
+
