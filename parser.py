@@ -2,12 +2,10 @@
 
 # Imports
 import xml.etree.ElementTree as ET
-import matplotlib
 from tkinter import *
 from tkinter import ttk
-matplotlib.use("TkAgg")
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-from matplotlib.figure import Figure
+import numpy as np
+import numpy.polynomial.polynomial as poly
 
 # Variable declarations
 
@@ -47,7 +45,7 @@ def handle_points(points):
         hb, watt = handle_point(point)
         hbs.append(hb)
         watts.append(watt)
-    return hbs, watt
+    return hbs, watts
 
 def handle_point(point):
     hb = point.find('{http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2}HeartRateBpm')
@@ -55,6 +53,8 @@ def handle_point(point):
     watt = point.find('{http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2}Extensions')
     watt = watt.find('{http://www.garmin.com/xmlschemas/ActivityExtension/v2}TPX')
     watt = watt.find('{http://www.garmin.com/xmlschemas/ActivityExtension/v2}Watts').text
+    watt = float(watt)
+    hb = float(hb)
     return hb, watt
 
 def parse_file(filename):
@@ -63,7 +63,9 @@ def parse_file(filename):
     laps = activity.findall("{http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2}Lap")
     tracks = handle_laps(laps)
     track_points = handle_tracks(tracks)
-    hbs, watt = handle_points(track_points)
+    hbs, watts = handle_points(track_points)
+    ffit = values_fit(hbs, watts)
+    return hbs, watts, ffit
 
 def create_plot(x, y, name):
     f = Figure(figsize(len(x), len(y)), dpi=100)
@@ -75,6 +77,5 @@ def create_plot(x, y, name):
 
 if __name__ == "__main__":
     parse_file("activity.xml")
-    root().title("Training Data") # TODO Get the training date
 
 
