@@ -8,7 +8,6 @@ matplotlib.use("TkAgg")
 import matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2TkAgg
 
 # Variable declarations
-root = Tk()
 
 # Classes
 class PlotPage(Frame):
