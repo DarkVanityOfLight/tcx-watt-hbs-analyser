@@ -2,10 +2,12 @@
 
 # Imports
 import xml.etree.ElementTree as ET
+import matplotlib
 from tkinter import *
 from tkinter import ttk
 matplotlib.use("TkAgg")
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2TkAgg
+from matplotlib.figure import Figure
 
 # Variable declarations
 
