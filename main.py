@@ -17,6 +17,7 @@ def root_from_tree(tree):
 
 def parse_file(filename):
     root = root_from_tree(file_to_tree(filename))
+    activity = root[0][0]
 
 # Main
 
