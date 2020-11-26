@@ -5,7 +5,7 @@ import xml.etree.ElementTree as ET
 from tkinter import *
 from tkinter import ttk
 matplotlib.use("TkAgg")
-import matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2TkAgg
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2TkAgg
 
 # Variable declarations
 
