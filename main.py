@@ -65,6 +65,12 @@ def parse_file(filename):
     track_points = handle_tracks(tracks)
     hbs, watt = handle_points(track_points)
 
+def create_plot(x, y, name):
+    f = Figure(figsize(len(x), len(y)), dpi=100)
+    a = f.add_subplot()
+    a.plot(x, y)
+    return f
+
 # Main
 
 if __name__ == "__main__":
