@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 # Imports
+from parser import PlotPage, parse_file
 import tkinter as tk
 from tkinter import ttk
 from tkinter import filedialog
@@ -26,6 +27,7 @@ class LoadFilesPage(ttk.Frame):
                initialdir="/", 
                title="Select file to load", 
                filetypes=(("xml files", ".xml"), ("training files", "*.tcx"), ("all files", "*.*"))) 
+       hbs, watts, ffit = parse_file(filename)
        label = ttk.Label(self, text=filename)
        label.pack()
     
