@@ -79,12 +79,16 @@ def values_fit(x, y):
     ffit = poly.Polynomial(coefs)
     return ffit
 
-def create_plot():
-    pass
+def create_plot(x, y, ffit):
+    plt.plot(x, y, 'o', x, ffit(x))
+    plt.xlabel("Hbs")
+    plt.ylabel("Watts")
+    plt.show()
 
 # Main
 
 if __name__ == "__main__":
-    parse_file("activity.xml")
+    hbs, watts, ffit = parse_file("activity.xml")
+    create_plot(hbs, watts, ffit)
 
 
