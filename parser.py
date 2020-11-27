@@ -47,6 +47,9 @@ def handle_points(points):
         hb, watt = handle_point(point)
         hbs.append(hb)
         watts.append(watt)
+
+    hbs = np.array(hbs)
+    watts = np.array(watts)
     return hbs, watts
 
 def handle_point(point):
