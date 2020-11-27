@@ -6,7 +6,9 @@ from tkinter import *
 from tkinter import ttk
 import numpy as np
 import numpy.polynomial.polynomial as poly
-
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+import tkinter as tk
 # Variable declarations
 
 # Classes
@@ -15,7 +17,7 @@ class PlotPage(Frame):
         Frame.__init__(self, parent)
     
         canvas = FigureCanvasTkAgg(figure, self)
-        canvas.show()
+        canvas.draw()
         canvas.get_tk_widget().pack(side=tk.BOTTOM, fill=tk.BOTH, expand=True)
 
 
