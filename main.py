@@ -4,6 +4,7 @@
 from parser import PlotPage, parse_file
 import tkinter as tk
 from tkinter import ttk
+from pathlib import Path
 from tkinter import filedialog
 from matplotlib.figure import Figure
 # Variable declarations
@@ -28,7 +29,7 @@ class LoadFilesPage(ttk.Frame):
 
     def load_file(self):
        filename = filedialog.askopenfilename(
-               initialdir="/", 
+               initialdir=Path.home(), 
                title="Select file to load", 
                filetypes=(("xml files", ".xml"), ("training files", "*.tcx"), ("all files", "*.*"))) 
        hbs, watts, ffit = parse_file(filename)
