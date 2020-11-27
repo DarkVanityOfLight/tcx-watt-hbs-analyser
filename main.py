@@ -19,6 +19,8 @@ class LoadFilesPage(ttk.Frame):
 
         load_button = ttk.Button(self, text="Load File",command=self.load_file)
         load_button.pack()
+        display_button = ttk.Button(self, text="Display", command=self.plot_show)
+        display_button.pack()
         files_label = ttk.Label(self, text="Files loaded:")
         files_label.pack()
 
