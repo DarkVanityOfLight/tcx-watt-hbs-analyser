@@ -5,6 +5,7 @@ from parser import PlotPage, parse_file
 import tkinter as tk
 from tkinter import ttk
 from tkinter import filedialog
+from matplotlib.figure import Figure
 # Variable declarations
 root = tk.Tk()
 
@@ -21,6 +22,7 @@ class LoadFilesPage(ttk.Frame):
         files_label = ttk.Label(self, text="Files loaded:")
         files_label.pack()
 
+        self.ax = self.plot.add_subplot(1, 1, 1)
 
     def load_file(self):
        filename = filedialog.askopenfilename(
@@ -28,9 +30,17 @@ class LoadFilesPage(ttk.Frame):
                title="Select file to load", 
                filetypes=(("xml files", ".xml"), ("training files", "*.tcx"), ("all files", "*.*"))) 
        hbs, watts, ffit = parse_file(filename)
+       self.add_plot(hbs, watts, ffit)
        label = ttk.Label(self, text=filename)
        label.pack()
     
+    def add_plot(self, hbs, watts, ffit):
+        self.ax.plot(hbs, watts, 'o', hbs, ffit(hbs)) 
+
+    def plot_show(self):
+        plot_page = PlotPage(self.parent, self.plot)
+        self.pack_forget()
+        plot_page.pack()
 
 # Functions
 
