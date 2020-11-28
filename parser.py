@@ -13,10 +13,12 @@ import tkinter as tk
 
 # Classes
 class PlotPage(Frame):
-    def __init__(self, parent, figure):
-        Frame.__init__(self, parent, main_menu_class, sub_plots)
+    def __init__(self, parent, figure, main_menu_class, sub_plots):
+        Frame.__init__(self, parent)
     
         self.figure = figure
+        self.main_menu_class = main_menu_class
+        self.sub_plots = sub_plots
     
         button = ttk.Button(self, text="Back", command=self.back)
         button.pack()
@@ -32,7 +34,7 @@ class PlotPage(Frame):
 
 
     def back(self):
-        main_menu = main_menu_class(self.parent, self.figure, sub_plots) 
+        main_menu = main_menu_class(self.parent, self.figure, self.sub_plots) 
         self.pack_forget()
         main_menu.pack()
 
