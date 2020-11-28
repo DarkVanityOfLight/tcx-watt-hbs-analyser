@@ -26,6 +26,7 @@ class LoadFilesPage(ttk.Frame):
         files_label.pack()
 
         self.ax = self.plot.add_subplot(1, 1, 1)
+        self.ax.legend(loc="best")
 
     def load_file(self):
        filename = filedialog.askopenfilename(
