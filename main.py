@@ -73,7 +73,7 @@ class LoadFilesPage(ttk.Frame):
 
     def plot_show(self):
         
-        self.ax.legend(loc="best")
+        self.ax.legend(bbox_to_anchor=(0, 1, 1, 0), loc="lower left", mode="expand", ncol=2)
         plot_page = PlotPage(self.parent, self.figure, LoadFilesPage, self.sub_plots)
         self.pack_forget()
         plot_page.pack()
