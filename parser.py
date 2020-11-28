@@ -19,6 +19,7 @@ class PlotPage(Frame):
         self.figure = figure
         self.main_menu_class = main_menu_class
         self.sub_plots = sub_plots
+        self.parent = parent
     
         button = ttk.Button(self, text="Back", command=self.back)
         button.pack()
@@ -34,7 +35,7 @@ class PlotPage(Frame):
 
 
     def back(self):
-        main_menu = main_menu_class(self.parent, self.figure, self.sub_plots) 
+        main_menu = self.main_menu_class(self.parent, self.figure, self.sub_plots) 
         self.pack_forget()
         main_menu.pack()
 
