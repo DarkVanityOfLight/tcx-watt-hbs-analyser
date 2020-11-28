@@ -15,7 +15,7 @@ class LoadFilesPage(ttk.Frame):
     figure = Figure()
     sub_plots = {}
 
-    def __init__(self, parent):
+    def __init__(self, parent, figure = None, sub_plots = None):
         tk.Frame.__init__(self, parent)
         self.parent = parent
 
@@ -30,7 +30,21 @@ class LoadFilesPage(ttk.Frame):
         remove_button = ttk.Button(self, text="Remove selected", command=self.remove)
         remove_button.pack()
 
-        self.ax = self.figure.add_subplot(1, 1, 1)
+
+        if figure != None and sub_plots != None:
+            self.back_init(figure, sub_plots)
+            self.ax = self.figure.axes[0]
+        else:
+            self.ax = self.figure.add_subplot(1, 1, 1)
+
+    def back_init(self, figure, sub_plots):
+
+        self.sub_plots = sub_plots
+        self.figure = figure
+
+        for plot in sub_plots.keys():
+            self.files.insert(0, plot)
+
 
     def load_file(self):
        filename = filedialog.askopenfilename(
@@ -48,7 +62,7 @@ class LoadFilesPage(ttk.Frame):
     def plot_show(self):
         
         self.ax.legend(loc="best")
-        plot_page = PlotPage(self.parent, self.figure)
+        plot_page = PlotPage(self.parent, self.figure, LoadFilesPage, self.sub_plots)
         self.pack_forget()
         plot_page.pack()
 
