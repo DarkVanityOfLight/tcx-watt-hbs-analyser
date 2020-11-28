@@ -8,7 +8,7 @@ from pathlib import Path
 from tkinter import filedialog
 from matplotlib.figure import Figure
 # Variable declarations
-root = tk.Tk()
+root = tk.Tk(className=" Training Analyzer")
 
 # Classes
 class LoadFilesPage(ttk.Frame):
