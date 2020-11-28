@@ -25,6 +25,10 @@ class LoadFilesPage(ttk.Frame):
         display_button.pack()
         files_label = ttk.Label(self, text="Files loaded:")
         files_label.pack()
+        self.files = tk.Listbox(self, selectmode="MULTIPLE")
+        self.files.pack()
+        remove_button = ttk.Button(self, text="Remove selected", command=self.remove)
+        remove_button.pack()
 
         self.ax = self.figure.add_subplot(1, 1, 1)
         self.ax.legend(loc="best")
@@ -36,13 +40,12 @@ class LoadFilesPage(ttk.Frame):
                filetypes=(("xml files", ".xml"), ("training files", "*.tcx"), ("all files", "*.*"))) 
        hbs, watts, ffit, training_id = parse_file(filename)
        self.add_plot(hbs, watts, ffit, training_id)
-       label = ttk.Label(self, text=filename)
-       label.pack()
     
     def add_plot(self, hbs, watts, ffit, training_id):
         plot, = self.ax.plot(hbs, ffit(hbs) ,label=training_id) 
         self.ax.legend(loc="best")
-        self.sub_plots.append(plot)
+        self.sub_plots[training_id] = plot
+        self.files.insert(0, training_id)
 
     def plot_show(self):
         plot_page = PlotPage(self.parent, self.figure)
