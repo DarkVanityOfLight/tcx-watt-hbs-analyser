@@ -31,7 +31,6 @@ class LoadFilesPage(ttk.Frame):
         remove_button.pack()
 
         self.ax = self.figure.add_subplot(1, 1, 1)
-        self.ax.legend(loc="best")
 
     def load_file(self):
        filename = filedialog.askopenfilename(
@@ -43,11 +42,12 @@ class LoadFilesPage(ttk.Frame):
     
     def add_plot(self, hbs, watts, ffit, training_id):
         plot, = self.ax.plot(hbs, ffit(hbs) ,label=training_id) 
-        self.ax.legend(loc="best")
         self.sub_plots[training_id] = plot
         self.files.insert(0, training_id)
 
     def plot_show(self):
+        
+        self.ax.legend(loc="best")
         plot_page = PlotPage(self.parent, self.figure)
         self.pack_forget()
         plot_page.pack()
