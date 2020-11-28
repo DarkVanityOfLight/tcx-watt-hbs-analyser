@@ -42,7 +42,6 @@ class LoadFilesPage(ttk.Frame):
         plot = self.ax.plot(hbs, ffit(hbs) ,label=training_id) 
         self.ax.legend(loc="best")
         self.sub_plots.append(plot)
-        print(plot)
 
     def plot_show(self):
         plot_page = PlotPage(self.parent, self.plot)
