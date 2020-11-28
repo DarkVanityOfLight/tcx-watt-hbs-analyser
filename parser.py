@@ -7,20 +7,34 @@ from tkinter import ttk
 import numpy as np
 import numpy.polynomial.polynomial as poly
 import matplotlib.pyplot as plt
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 import tkinter as tk
 # Variable declarations
 
 # Classes
 class PlotPage(Frame):
     def __init__(self, parent, figure):
-        Frame.__init__(self, parent)
+        Frame.__init__(self, parent, main_menu_class, sub_plots)
     
+        self.figure = figure
+    
+        button = ttk.Button(self, text="Back", command=self.back)
+        button.pack()
+
+        parent.geometry("700x550")
         canvas = FigureCanvasTkAgg(figure, self)
         canvas.draw()
         canvas.get_tk_widget().pack(side=tk.BOTTOM, fill=tk.BOTH, expand=True)
+        
+        toolbar = NavigationToolbar2Tk(canvas, self)
+        toolbar.update()
+        canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
 
 
+    def back(self):
+        main_menu = main_menu_class(self.parent, self.figure, sub_plots) 
+        self.pack_forget()
+        main_menu.pack()
 
 # Functions
 def file_to_tree(filename):
