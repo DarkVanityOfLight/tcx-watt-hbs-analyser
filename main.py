@@ -13,6 +13,7 @@ root = tk.Tk(className=" Training Analyzer")
 # Classes
 class LoadFilesPage(ttk.Frame):
     figure = Figure()
+    sub_plots = {}
 
     def __init__(self, parent):
         tk.Frame.__init__(self, parent)
@@ -39,7 +40,7 @@ class LoadFilesPage(ttk.Frame):
        label.pack()
     
     def add_plot(self, hbs, watts, ffit, training_id):
-        plot = self.ax.plot(hbs, ffit(hbs) ,label=training_id) 
+        plot, = self.ax.plot(hbs, ffit(hbs) ,label=training_id) 
         self.ax.legend(loc="best")
         self.sub_plots.append(plot)
 
