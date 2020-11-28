@@ -12,7 +12,7 @@ root = tk.Tk(className=" Training Analyzer")
 
 # Classes
 class LoadFilesPage(ttk.Frame):
-    plot = Figure()
+    figure = Figure()
 
     def __init__(self, parent):
         tk.Frame.__init__(self, parent)
@@ -25,7 +25,7 @@ class LoadFilesPage(ttk.Frame):
         files_label = ttk.Label(self, text="Files loaded:")
         files_label.pack()
 
-        self.ax = self.plot.add_subplot(1, 1, 1)
+        self.ax = self.figure.add_subplot(1, 1, 1)
         self.ax.legend(loc="best")
 
     def load_file(self):
@@ -44,7 +44,7 @@ class LoadFilesPage(ttk.Frame):
         self.sub_plots.append(plot)
 
     def plot_show(self):
-        plot_page = PlotPage(self.parent, self.plot)
+        plot_page = PlotPage(self.parent, self.figure)
         self.pack_forget()
         plot_page.pack()
 # Functions
