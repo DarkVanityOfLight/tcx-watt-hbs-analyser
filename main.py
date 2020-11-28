@@ -51,6 +51,16 @@ class LoadFilesPage(ttk.Frame):
         plot_page = PlotPage(self.parent, self.figure)
         self.pack_forget()
         plot_page.pack()
+
+    def remove(self):
+        to_remove = self.files.curselection()
+        
+        for training in to_remove:
+            training_id = self.files.get(training)
+            self.files.delete(training)
+            plot = self.sub_plots[training_id]
+            plot.remove()
+
 # Functions
 
 # Main
