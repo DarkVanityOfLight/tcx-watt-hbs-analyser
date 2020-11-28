@@ -19,16 +19,28 @@ class LoadFilesPage(ttk.Frame):
         tk.Frame.__init__(self, parent)
         self.parent = parent
 
-        load_button = ttk.Button(self, text="Load File",command=self.load_file)
-        load_button.pack()
-        display_button = ttk.Button(self, text="Display", command=self.plot_show)
-        display_button.pack()
-        files_label = ttk.Label(self, text="Files loaded:")
-        files_label.pack()
-        self.files = tk.Listbox(self, selectmode="MULTIPLE")
-        self.files.pack()
-        remove_button = ttk.Button(self, text="Remove selected", command=self.remove)
-        remove_button.pack()
+        top_button_container = ttk.Frame(self)
+        top_button_container.pack(side=tk.TOP)
+
+        list_container = ttk.Frame(self)
+        list_container.pack()
+
+        sub_list_container = ttk.Frame(list_container)
+        sub_list_container.pack(side=tk.TOP, fill=tk.X)
+
+        remove_button_container = ttk.Frame(list_container)
+        remove_button_container.pack(side=tk.RIGHT, fill=tk.BOTH)
+
+        load_button = ttk.Button(top_button_container, text="Load File",command=self.load_file)
+        load_button.pack(side=tk.LEFT)
+        display_button = ttk.Button(top_button_container, text="Display", command=self.plot_show)
+        display_button.pack(side=tk.LEFT)
+        files_label = ttk.Label(sub_list_container, text="Files loaded:")
+        files_label.pack(side=tk.LEFT)
+        self.files = tk.Listbox(list_container, selectmode="MULTIPLE")
+        self.files.pack(side=tk.LEFT)
+        remove_button = ttk.Button(remove_button_container, text="Remove selected", command=self.remove)
+        remove_button.pack(side=tk.TOP)
 
 
         if figure != None and sub_plots != None:
