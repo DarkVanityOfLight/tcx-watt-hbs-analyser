@@ -33,19 +33,21 @@ class LoadFilesPage(ttk.Frame):
                initialdir=Path.home(), 
                title="Select file to load", 
                filetypes=(("xml files", ".xml"), ("training files", "*.tcx"), ("all files", "*.*"))) 
-       hbs, watts, ffit = parse_file(filename)
-       self.add_plot(hbs, watts, ffit)
+       hbs, watts, ffit, training_id = parse_file(filename)
+       self.add_plot(hbs, watts, ffit, training_id)
        label = ttk.Label(self, text=filename)
        label.pack()
     
-    def add_plot(self, hbs, watts, ffit):
-        self.ax.plot(hbs, watts, 'o', hbs, ffit(hbs)) 
+    def add_plot(self, hbs, watts, ffit, training_id):
+        plot = self.ax.plot(hbs, ffit(hbs) ,label=training_id) 
+        self.ax.legend(loc="best")
+        self.sub_plots.append(plot)
+        print(plot)
 
     def plot_show(self):
         plot_page = PlotPage(self.parent, self.plot)
         self.pack_forget()
         plot_page.pack()
-
 # Functions
 
 # Main
