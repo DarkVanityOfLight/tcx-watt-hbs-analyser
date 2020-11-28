@@ -66,11 +66,12 @@ def parse_file(filename):
     root = root_from_tree(file_to_tree(filename))
     activity = root[0][0]
     laps = activity.findall("{http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2}Lap")
+    training_id = activity.find("{http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2}Id").text
     tracks = handle_laps(laps)
     track_points = handle_tracks(tracks)
     hbs, watts = handle_points(track_points)
     ffit = values_fit(hbs, watts)
-    return hbs, watts, ffit
+    return hbs, watts, ffit, training_id
 
 def values_fit(x, y):
     xn = np.array(x)
