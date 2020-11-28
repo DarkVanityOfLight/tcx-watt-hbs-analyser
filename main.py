@@ -92,7 +92,7 @@ class LoadFilesPage(ttk.Frame):
 # Main
 
 if __name__ == "__main__":
-    root.geometry("500x300")
+    root.geometry("700x550")
     load_files_page = LoadFilesPage(root)
     load_files_page.pack()
     root.mainloop()

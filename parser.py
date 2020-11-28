@@ -24,7 +24,6 @@ class PlotPage(Frame):
         button = ttk.Button(self, text="Back", command=self.back)
         button.pack()
 
-        parent.geometry("700x550")
         canvas = FigureCanvasTkAgg(figure, self)
         canvas.draw()
         canvas.get_tk_widget().pack(side=tk.BOTTOM, fill=tk.BOTH, expand=True)
