@@ -48,6 +48,8 @@ class LoadFilesPage(ttk.Frame):
             self.ax = self.figure.axes[0]
         else:
             self.ax = self.figure.add_subplot(1, 1, 1)
+        self.ax.set_ylabel("Watt")
+        self.ax.set_xlabel("Hbs")
 
     def back_init(self, figure, sub_plots):
 
